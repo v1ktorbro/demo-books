@@ -16,6 +16,8 @@
 
 .card-book__text-block {
   padding: 5px;
+  padding-top: 15px;
+  height: 100%;
 }
 
 .card-book__title {
@@ -23,6 +25,10 @@
   text-align: center;
   white-space: pre-wrap;
   margin-top: 5px;
+  max-height: 44px;
+  overflow: hidden;
+  /* white-space: nowrap; */
+  text-overflow: ellipsis;
 }
 
 .card-book__description {
