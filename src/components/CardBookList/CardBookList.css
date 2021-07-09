@@ -1,0 +1,8 @@
+.card-book-list {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 15px;
+  grid-row-gap: 50px;
+  margin-top: 50px;
+}
