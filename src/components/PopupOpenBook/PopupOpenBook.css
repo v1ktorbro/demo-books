@@ -7,7 +7,6 @@
   top: 0;
   left: 0;
   z-index: 5;
-  cursor: pointer;
 }
 
 .popup-open-book__container {
@@ -115,4 +114,10 @@
   font-size: 14px;
   margin: 0;
   width: calc(100% - 20px);
+}
+
+.popup-open-book_closed {
+  visibility: hidden;
+  transition: opacity .5s linear;
+  opacity: 0;
 }
