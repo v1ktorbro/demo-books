@@ -75,6 +75,7 @@
 
 .popup-open-book__text-container {
   width: 100%;
+  position: relative;
 }
 
 .popup-open-book__title-block {
@@ -114,6 +115,78 @@
   font-size: 14px;
   margin: 0;
   width: calc(100% - 20px);
+}
+
+.popup-open-book__btn-remove {
+  border: 1px solid #4D76A1;
+  position: absolute;
+  height: 50px;
+  width: 250px;
+  bottom: 35px;
+  right: 9%;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.popup-open-book__btn-remove:hover {
+  opacity: .8;
+  background-color: #f66565;
+}
+
+
+.popup-open-book__remove-block {
+  z-index: 11;
+  position: absolute;
+  border: 1px solid #4D76A1;
+  background-color: #fff;
+  width: 350px;
+  height: 105px;
+  bottom: 105px;
+  right: 3%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 15px;
+  border-radius: 10px;
+}
+
+.popup-open-book__remove-block-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 25px;
+}
+
+.popup-open-book__btn-remove-yes {
+  border: 1px solid #4D76A1;
+  height: 50px;
+  width: calc(50% - 20px);
+  font-size: 16px;
+  font-weight: 600;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.popup-open-book__btn-remove-yes:hover {
+  opacity: .8;
+  background-color: #f66565;
+}
+
+.popup-open-book__btn-remove-no {
+  border-radius: 5px;
+  border: 1px solid #4D76A1;
+  height: 50px;
+  width: calc(50% - 20px);
+  font-size: 16px;
+  font-weight: 600;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.popup-open-book__btn-remove-no:hover {
+  opacity: .6;
 }
 
 .popup-open-book_closed {

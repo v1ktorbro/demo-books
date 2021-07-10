@@ -17,6 +17,14 @@ function App() {
     description: '',
   });
 
+  function removeCardBook(_id) {
+    const arr = listBook.filter((book, bookId) => {
+      return bookId !== selectedBook._id
+    })
+    closeAllPopups();
+    setListBook(arr);
+  }
+
   function handleBookClick(linkImage, title, description, _id) {
     setSelectedBook({
       isOpen: true,
@@ -112,6 +120,7 @@ function App() {
         onSubmitUpdTitleBook={onSubmitUpdTitleBook}
         onSubmitUpdDescriptionBook={onSubmitUpdDescriptionBook}
         onSubmitUpdImageBook={onSubmitUpdImageBook}
+        removeBook={removeCardBook}
       />
     </>  
   );

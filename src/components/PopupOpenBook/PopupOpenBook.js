@@ -3,11 +3,12 @@ import BtnsEditChange from '../BtnsEditChange/BtnsEditChange';
 import { useEffect, useState } from 'react';
 
 function PopupOpenBook({ isOpen, onClose, linkImage, title, description, 
-  onSubmitUpdTitleBook, onSubmitUpdDescriptionBook, onSubmitUpdImageBook 
+  onSubmitUpdTitleBook, onSubmitUpdDescriptionBook, onSubmitUpdImageBook, removeBook 
 }) {
   const [isTitleEdit, setIsTitleEdit] = useState(false);
   const [isDescriptionEdit, setIsDescriptionEdit] = useState(false);
   const [isImageEdit, setIsImageEdit] = useState(false);
+  const [isRemoveBook, setIsRemoveBook] = useState(false);
 
   useEffect(() => {
     setIsTitleEdit(false);
@@ -18,7 +19,10 @@ function PopupOpenBook({ isOpen, onClose, linkImage, title, description,
   return (
     <section className={`popup-open-book ${!isOpen && "popup-open-book_closed"}`}>
       <div className="popup-open-book__container">
-        <span className="popup-open-book__btn-close" onClick={onClose} />
+        <span className="popup-open-book__btn-close" onClick={() => {
+          onClose();
+          setIsRemoveBook(false);
+        }} />
         <div className="popup-open-book__container-image">
           <img src={linkImage} className="popup-open-book__image" alt="Обложка книги" onClick={() => setIsImageEdit(true)} />
           { isImageEdit &&
@@ -77,6 +81,19 @@ function PopupOpenBook({ isOpen, onClose, linkImage, title, description,
             />}
           </div>
         </div>
+        <button className="popup-open-book__btn-remove" type="button" onClick={() => setIsRemoveBook(true)}>Удалить книгу</button>
+        { isRemoveBook && 
+            <div className="popup-open-book__remove-block">
+              <h3 className="popup-open-book__title">Вы уверены?</h3>
+              <div className="popup-open-book__remove-block-wrapper">
+                <button className="popup-open-book__btn-remove-yes" type="button" onClick={() => {
+                  removeBook();
+                  setIsRemoveBook(false);
+                  }}>Да</button>
+                <button className="popup-open-book__btn-remove-no" type="button" onClick={() => setIsRemoveBook(false)}>Нет</button>
+              </div>
+            </div>
+        }
       </div>
     </section>
   );
