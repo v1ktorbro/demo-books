@@ -1,0 +1,33 @@
+.navigation {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.navigation__input-search {
+  height: calc(50% - 20px);
+  border-radius: 5px;
+  font-size: 16px;
+  line-height: 18px;
+  outline: none;
+  padding: 0 15px;
+  padding-right: 35px;
+  border: 1px solid #4D76A1;
+  background-image: url(../../images/icon-search.png);
+  background-repeat: no-repeat;
+  background-position-x: 260px;
+  background-position-y: center;
+  background-size: 20px;
+}
+
+.navigation__btn-add-book {
+  height: calc(50% - 20px);
+  font-size: 16px;
+  line-height: 18px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #4D76A1;
+  background-color: #fff;
+  cursor: pointer;
+}
