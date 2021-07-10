@@ -7,7 +7,7 @@ import PopupAddBook from '../PopupAddBook/PopupAddBook';
 import initialDataBooks from '../../utils/initialDataBooks';
 
 function App() {
-  const [initialBooks, setInitialBooks] = useState(initialDataBooks);
+  const [listBook, setListBook] = useState(initialDataBooks);
   const [isAddNewBook, setIsAddNewBook] = useState(false);
   const [selectedBook, setSelectedBook] = useState({
     isOpen: false,
@@ -29,42 +29,57 @@ function App() {
 
   function onSubmitUpdTitleBook(evt, newTitle) {
     evt.preventDefault();
-    const updNewTitleInArr = initialBooks.map((book, bookId) => {
+    const updNewTitleInArr = listBook.map((book, bookId) => {
       if(bookId === selectedBook._id) {
         book.title = newTitle;
         setSelectedBook({...selectedBook, title: newTitle});
       }
       return book;
     })
-    setInitialBooks(updNewTitleInArr);
+    setListBook(updNewTitleInArr);
   }
 
   function onSubmitUpdDescriptionBook(evt, newDescription) {
     evt.preventDefault();
-    const updNewDescriptionInArr = initialBooks.map((book, bookId) => {
+    const updNewDescriptionInArr = listBook.map((book, bookId) => {
       if(bookId === selectedBook._id) {
         book.description = newDescription;
         setSelectedBook({...selectedBook, description: newDescription});
       }
       return book;
     })
-    setInitialBooks(updNewDescriptionInArr);
+    setListBook(updNewDescriptionInArr);
   }
 
   function onSubmitUpdImageBook(evt, newLinkImage) {
     evt.preventDefault();
-    const updNewDescriptionInArr = initialBooks.map((book, bookId) => {
+    const updNewDescriptionInArr = listBook.map((book, bookId) => {
       if(bookId === selectedBook._id) {
         book.linkImage = newLinkImage;
         setSelectedBook({...selectedBook, linkImage: newLinkImage});
       }
       return book;
     })
-    setInitialBooks(updNewDescriptionInArr);
+    setListBook(updNewDescriptionInArr);
+  }
+  
+  function clearFormAddBook() {
+    const form = document.forms.addBook;
+    form.title.value = "";
+    form.description.value = "";
+    form.linkImage.value = "";
+  }
+
+  function onSubmitAddNewBook(evt, dataNewBook) {
+    evt.preventDefault();
+    setListBook([...listBook, dataNewBook].reverse());
+    closeAllPopups();
+    clearFormAddBook();
   }
 
   function closeAllPopups() {
     setIsAddNewBook(false);
+    clearFormAddBook();
     setSelectedBook({
       isOpen: false,
       _id: '',
@@ -81,11 +96,12 @@ function App() {
       />  
       <Main 
         onBookClick={handleBookClick}
-        initialBooks={initialBooks}
+        listBook={listBook}
       />
       <PopupAddBook 
         isOpen={isAddNewBook}
         onClose={closeAllPopups}
+        onSubmit={onSubmitAddNewBook}
       />
       <PopupOpenBook 
         isOpen={selectedBook.isOpen} 

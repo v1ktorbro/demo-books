@@ -25,7 +25,7 @@
   text-align: center;
   white-space: pre-wrap;
   margin-top: 5px;
-  max-height: 44px;
+  height: 44px;
   overflow: hidden;
   text-overflow: ellipsis;
 }

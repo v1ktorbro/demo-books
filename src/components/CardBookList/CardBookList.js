@@ -1,10 +1,10 @@
 import './CardBookList.css';
 import CardBook from '../CardBook/CardBook';
 
-function CardBookList({ onBookClick, initialBooks }) {
+function CardBookList({ onBookClick, listBook }) {
   return (
     <article className="card-book-list">
-      {initialBooks.map((book, _id) => {
+      {listBook.map((book, _id) => {
         return (
           <CardBook 
             key={_id} 
