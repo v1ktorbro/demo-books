@@ -9,6 +9,9 @@ function PopupOpenBook({ isOpen, onClose, linkImage, title, description,
   const [isDescriptionEdit, setIsDescriptionEdit] = useState(false);
   const [isImageEdit, setIsImageEdit] = useState(false);
   const [isRemoveBook, setIsRemoveBook] = useState(false);
+  const [mouseOnImage, setMouseOnImage] = useState(false);
+  const [mouseOnBtnEditTitle, setMouseOnBtnEditTitle] = useState(false);
+  const [mouseOnBtnEditDescr, setMouseOnBtnEditDescr] = useState(true);
 
   useEffect(() => {
     setIsTitleEdit(false);
@@ -24,11 +27,19 @@ function PopupOpenBook({ isOpen, onClose, linkImage, title, description,
           setIsRemoveBook(false);
         }} />
         <div className="popup-open-book__container-image">
-          <img src={linkImage} className="popup-open-book__image" alt="Обложка книги" onClick={() => setIsImageEdit(true)} />
+          <img className="popup-open-book__image" 
+            alt="Обложка книги" 
+            onClick={() => setIsImageEdit(true)} 
+            src={linkImage}
+            onMouseEnter={() => setMouseOnImage(true)} 
+            onMouseLeave={() => setMouseOnImage(false)} 
+          />
+          {mouseOnImage && !isImageEdit && <span className="popup-open-book__label popup-open-book__label_image">Редактировать обложку</span>}
           { isImageEdit &&
               <BtnsEditChange
                 onCancel={() => setIsImageEdit(false)}
                 onSubmit={onSubmitUpdImageBook}
+                labelHide={() => setMouseOnImage(false)}
                 styleComponent={{
                   position: 'absolute',
                   top: '39%',
@@ -47,24 +58,35 @@ function PopupOpenBook({ isOpen, onClose, linkImage, title, description,
         </div>
         <div className="popup-open-book__text-container">
           <div className="popup-open-book__title-block">
+          {mouseOnBtnEditTitle && !isTitleEdit && <span className="popup-open-book__label popup-open-book__label_title">Редактировать</span>}
             {!isTitleEdit ? 
               <>
                 <h3 className="popup-open-book__title">{title}</h3>
-                <button className="popup-open-book__btn-edit" onClick={() => setIsTitleEdit(true)} />
+                <button className="popup-open-book__btn-edit" 
+                  onClick={() => setIsTitleEdit(true)}
+                  onMouseEnter={() => setMouseOnBtnEditTitle(true)} 
+                  onMouseLeave={() => setMouseOnBtnEditTitle(false)} 
+                />
               </>
               :
               <BtnsEditChange
                 onCancel={() => setIsTitleEdit(false)}
                 onSubmit={onSubmitUpdTitleBook}
                 defaultValueTextArea={title}
+                labelHide={() => setMouseOnBtnEditTitle(false)}
                 placeholder="Редактировать название книги"
               />}
           </div>
           <div className="popup-open-book__description-block">
+          {mouseOnBtnEditDescr && !isDescriptionEdit && <span className="popup-open-book__label popup-open-book__label_description">Редактировать</span>}
             {!isDescriptionEdit ? 
             <>
               <p className="popup-open-book__description">{description}</p>
-              <button className="popup-open-book__btn-edit" onClick={() => setIsDescriptionEdit(true)} />
+              <button className="popup-open-book__btn-edit" 
+                onClick={() => setIsDescriptionEdit(true)}
+                onMouseEnter={() => setMouseOnBtnEditDescr(true)} 
+                onMouseLeave={() => setMouseOnBtnEditDescr(false)} 
+              />
             </>
             :
             <BtnsEditChange
@@ -77,6 +99,7 @@ function PopupOpenBook({ isOpen, onClose, linkImage, title, description,
                 lineHeight: "16px",
                 fontWeight: "normal"
               }}
+              labelHide={() => setMouseOnBtnEditDescr(false)}
               placeholder="Редактировать описание книги"
             />}
           </div>

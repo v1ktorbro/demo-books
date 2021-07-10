@@ -73,6 +73,36 @@
   opacity: .8;
 }
 
+.popup-open-book__label {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: normal;
+  position: absolute;
+  padding: 10px 15px;
+  z-index: 10;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.popup-open-book__label_image {
+  left: 0;
+  top: 0;
+}
+
+.popup-open-book__label_title {
+  border: 1px solid #4D76A1;
+  top: 42px;
+  padding: 5px 10px;
+  right: 35px;
+}
+
+.popup-open-book__label_description {
+  border: 1px solid #4D76A1;
+  top: 37px;
+  padding: 5px 10px;
+  right: 35px;
+}
+
 .popup-open-book__text-container {
   width: 100%;
   position: relative;
@@ -107,6 +137,7 @@
 }
 
 .popup-open-book__description-block {
+  position: relative;
   display: flex;
   padding: 15px;
 }
