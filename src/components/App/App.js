@@ -37,6 +37,18 @@ function App() {
     setInitialBooks(updNewTitleInArr);
   }
 
+  function onSubmitUpdDescriptionBook(evt, newDescription) {
+    evt.preventDefault();
+    const updNewDescriptionInArr = initialBooks.map((book, bookId) => {
+      if(bookId === selectedBook._id) {
+        book.description = newDescription;
+        setSelectedBook({...selectedBook, description: newDescription});
+      }
+      return book;
+    })
+    setInitialBooks(updNewDescriptionInArr);
+  }
+
   function closeAllPopups() {
     setSelectedBook({
       isOpen: false,
@@ -61,6 +73,7 @@ function App() {
         description={selectedBook.description}
         onClose={closeAllPopups}
         onSubmitUpdTitleBook={onSubmitUpdTitleBook}
+        onSubmitUpdDescriptionBook={onSubmitUpdDescriptionBook}
       />
     </>  
   );

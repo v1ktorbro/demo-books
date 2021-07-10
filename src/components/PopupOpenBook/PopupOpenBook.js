@@ -2,7 +2,7 @@ import './PopupOpenBook.css';
 import BtnsEditChange from '../BtnsEditChange/BtnsEditChange';
 import { useEffect, useState } from 'react';
 
-function PopupOpenBook({ isOpen, onClose, linkImage, title, description, onSubmitUpdTitleBook }) {
+function PopupOpenBook({ isOpen, onClose, linkImage, title, description, onSubmitUpdTitleBook, onSubmitUpdDescriptionBook }) {
   const [isTitleEdit, setIsTitleEdit] = useState(false);
   const [isDescriptionEdit, setIsDescriptionEdit] = useState(false);
 
@@ -42,7 +42,7 @@ function PopupOpenBook({ isOpen, onClose, linkImage, title, description, onSubmi
             :
             <BtnsEditChange
               onCancel={() => setIsDescriptionEdit(false)}
-              onSubmit={onSubmitUpdTitleBook}
+              onSubmit={onSubmitUpdDescriptionBook}
               defaultValueTextArea={description}
               styleArea={{
                 height: "200px",
