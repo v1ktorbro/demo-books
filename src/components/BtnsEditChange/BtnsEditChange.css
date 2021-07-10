@@ -1,0 +1,60 @@
+.btns-edit-change {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.btns-edit-change__textarea {
+  height: 55px;
+  font-size: 20px;
+  line-height: 22px;
+  font-weight: 600;
+  outline: none;
+  resize: none;
+  margin: 10px 0;
+}
+
+.btns-edit-change__btns-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.btns-edit-change__save {
+  width: calc(50% - 10px);
+  height: 45px;
+  border: 1px solid #909090;
+  outline: none;
+  background-color: transparent;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btns-edit-change__save:hover {
+  opacity: .95;
+  background-color: #7bfe74;
+}
+
+.btns-edit-change__cancel {
+  width: calc(50% - 10px);
+  height: 45px;
+  border: 1px solid #909090;
+  outline: none;
+  background-color: transparent;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btns-edit-change__cancel:hover {
+  opacity: .95;
+  background-color: #f66565;
+}
