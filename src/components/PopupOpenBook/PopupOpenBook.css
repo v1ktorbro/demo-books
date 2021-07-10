@@ -12,7 +12,7 @@
 .popup-open-book__container {
   position: relative;
   left: 50%;
-  top: 50%;
+  top: 70%;
   transform: translate(-50%, -50%);
   width: 800px;
   height: 600px;

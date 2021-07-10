@@ -1,9 +1,9 @@
 import './CardBook.css';
 
-function CardBook({ linkImage, title, description, onBookClick }) {
+function CardBook({ linkImage, title, description, _id, onBookClick }) {
   
   function handleClick() {
-    onBookClick(linkImage, title, description)
+    onBookClick(linkImage, title, description, _id);
   }
 
   return (

@@ -1,18 +1,18 @@
 import './CardBookList.css';
-import initialDataBooks from '../../utils/initialDataBooks';
 import CardBook from '../CardBook/CardBook';
 
-function CardBookList({ onBookClick }) {
+function CardBookList({ onBookClick, initialBooks }) {
   return (
     <article className="card-book-list">
-      {initialDataBooks.map((book, id) => {
+      {initialBooks.map((book, _id) => {
         return (
           <CardBook 
-            key={id} 
+            key={_id} 
             linkImage={book.linkImage}
             title={book.title}
             description={book.description}
             onBookClick={onBookClick}
+            _id={_id}
           />
         );
       })}
