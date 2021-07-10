@@ -49,7 +49,19 @@ function App() {
     setInitialBooks(updNewDescriptionInArr);
   }
 
-  function closeAllPopups() {
+  function onSubmitUpdImageBook(evt, newLinkImage) {
+    evt.preventDefault();
+    const updNewDescriptionInArr = initialBooks.map((book, bookId) => {
+      if(bookId === selectedBook._id) {
+        book.linkImage = newLinkImage;
+        setSelectedBook({...selectedBook, linkImage: newLinkImage});
+      }
+      return book;
+    })
+    setInitialBooks(updNewDescriptionInArr);
+  }
+
+  function closePopup() {
     setSelectedBook({
       isOpen: false,
       _id: '',
@@ -71,9 +83,10 @@ function App() {
         linkImage={selectedBook.linkImage}
         title={selectedBook.title}
         description={selectedBook.description}
-        onClose={closeAllPopups}
+        onClose={closePopup}
         onSubmitUpdTitleBook={onSubmitUpdTitleBook}
         onSubmitUpdDescriptionBook={onSubmitUpdDescriptionBook}
+        onSubmitUpdImageBook={onSubmitUpdImageBook}
       />
     </>  
   );

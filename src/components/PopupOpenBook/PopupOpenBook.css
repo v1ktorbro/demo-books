@@ -12,7 +12,7 @@
 .popup-open-book__container {
   position: relative;
   left: 50%;
-  top: 70%;
+  top: 50%;
   transform: translate(-50%, -50%);
   width: 800px;
   height: 600px;
@@ -70,7 +70,7 @@
 }
 
 .popup-open-book__image:hover {
-  opacity: .9;
+  opacity: .8;
 }
 
 .popup-open-book__text-container {
