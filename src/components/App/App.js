@@ -3,10 +3,12 @@ import { useState } from 'react';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import PopupOpenBook from '../PopupOpenBook/PopupOpenBook';
+import PopupAddBook from '../PopupAddBook/PopupAddBook';
 import initialDataBooks from '../../utils/initialDataBooks';
 
 function App() {
   const [initialBooks, setInitialBooks] = useState(initialDataBooks);
+  const [isAddNewBook, setIsAddNewBook] = useState(false);
   const [selectedBook, setSelectedBook] = useState({
     isOpen: false,
     id: '',
@@ -61,7 +63,8 @@ function App() {
     setInitialBooks(updNewDescriptionInArr);
   }
 
-  function closePopup() {
+  function closeAllPopups() {
+    setIsAddNewBook(false);
     setSelectedBook({
       isOpen: false,
       _id: '',
@@ -73,17 +76,23 @@ function App() {
 
   return (
     <>
-      <Header />  
+      <Header 
+        openFormAddBook={() => setIsAddNewBook(true)}
+      />  
       <Main 
         onBookClick={handleBookClick}
         initialBooks={initialBooks}
+      />
+      <PopupAddBook 
+        isOpen={isAddNewBook}
+        onClose={closeAllPopups}
       />
       <PopupOpenBook 
         isOpen={selectedBook.isOpen} 
         linkImage={selectedBook.linkImage}
         title={selectedBook.title}
         description={selectedBook.description}
-        onClose={closePopup}
+        onClose={closeAllPopups}
         onSubmitUpdTitleBook={onSubmitUpdTitleBook}
         onSubmitUpdDescriptionBook={onSubmitUpdDescriptionBook}
         onSubmitUpdImageBook={onSubmitUpdImageBook}

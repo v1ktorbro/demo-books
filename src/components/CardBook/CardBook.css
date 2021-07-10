@@ -27,7 +27,6 @@
   margin-top: 5px;
   max-height: 44px;
   overflow: hidden;
-  /* white-space: nowrap; */
   text-overflow: ellipsis;
 }
 
