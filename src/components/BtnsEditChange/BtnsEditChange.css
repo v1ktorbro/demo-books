@@ -15,6 +15,7 @@
   outline: none;
   resize: none;
   margin: 10px 0;
+  border-radius: 5px;
 }
 
 .btns-edit-change__btns-container {
@@ -30,11 +31,12 @@
   height: 45px;
   border: 1px solid #909090;
   outline: none;
-  background-color: transparent;
+  background-color: #fff;
   font-size: 14px;
   line-height: 16px;
   font-weight: 600;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .btns-edit-change__save:hover {
@@ -47,11 +49,12 @@
   height: 45px;
   border: 1px solid #909090;
   outline: none;
-  background-color: transparent;
+  background-color: #fff;
   font-size: 14px;
   line-height: 16px;
   font-weight: 600;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .btns-edit-change__cancel:hover {
