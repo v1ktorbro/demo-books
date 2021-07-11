@@ -20,14 +20,16 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 430px;
-  height: 440px;
+  width: 400px;
+  height: 480px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
   z-index: 1;
   cursor: default;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .popup-add-book__btn-close {
@@ -72,7 +74,6 @@
   border: 1px solid #909090;
   border-radius: 5px;
   outline: none;
-  margin: 0 30px;
   height: 40px;
   padding-left: 15px;
   margin-bottom: 25px;
@@ -80,7 +81,6 @@
   line-height: 16px;
   resize: none;
 }
-
 
 .popup-add-book__input-description {
   padding-top: 12px;
@@ -90,7 +90,6 @@
   border: 1px solid #4D76A1;
   border-radius: 5px;
   outline: none;
-  margin: 0 30px;
   height: 40px;
   background-color: transparent;
   font-size: 14px;
@@ -103,4 +102,14 @@
 .popup-add-book__btn-submit:hover {
   opacity: .8;
   background-color: #7bfe74;
+}
+
+.popup-add-book__label-file-name {
+  border: 1px solid #4D76A1;
+  display: block;
+  margin: 10px auto auto;
+  text-align: start;
+  border-radius: 3px;
+  padding-left: 15px;
+  background-color: #d6e7f9;
 }
