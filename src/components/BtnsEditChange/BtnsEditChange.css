@@ -5,6 +5,60 @@
   width: 100%;
   font-size: 16px;
   line-height: 19px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px 10px;
+}
+
+.btns-edit-change__input-file-wrapper {
+  width: 100%;
+  position: relative;
+  margin: 15px 0;
+  text-align: center;
+}
+
+.btns-edit-change__input-file {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+}
+
+.btns-edit-change__input-file-button {
+  width: 100%;
+  width: 100%;
+  height: 50px;
+  background: #d6e7f9;
+  color: black;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.btns-edit-change__input-file-button:hover {
+  opacity: .9;
+}
+
+.btns-edit-change__input-file-icon-wrapper {
+  height: 60px;
+  width: 60px;
+  margin-right: 15px;
+  display: flex;
+  justify-content: center;
+  border-right: 1px solid #fff;
+}
+
+.btns-edit-change__input-file-icon {
+
+}
+
+.btns-edit-change__input-file-button-text {
+  line-height: 1;
+  margin-top: 1px;
 }
 
 .btns-edit-change__textarea {
