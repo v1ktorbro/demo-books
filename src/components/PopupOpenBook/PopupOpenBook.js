@@ -25,6 +25,8 @@ function PopupOpenBook({ isOpen, onClose, linkImage, title, description,
         <span className="popup-open-book__btn-close" onClick={() => {
           onClose();
           setIsRemoveBook(false);
+          setMouseOnBtnEditTitle(false);
+          setMouseOnBtnEditDescr(false);
         }} />
         <div className="popup-open-book__container-image">
           <img className="popup-open-book__image" 
