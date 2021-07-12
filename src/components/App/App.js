@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import PopupOpenBook from '../PopupOpenBook/PopupOpenBook';
@@ -8,6 +8,7 @@ import PopupAddBook from '../PopupAddBook/PopupAddBook';
 function App() {
   const [listBook, setListBook] = useState(initialDataBooks());
   const [isAddNewBook, setIsAddNewBook] = useState(false);
+  const [valueInputSearch, setValueInputSearch] = useState('');
   const [selectedBook, setSelectedBook] = useState({
     isOpen: false,
     id: '',
@@ -25,12 +26,13 @@ function App() {
   }
 
   function removeCardBook(_id) {
-    const newArr = listBook.filter((book, bookId) => {
-      return bookId !== selectedBook._id
+    const newArr = initialDataBooks().filter((book, bookId) => {
+      return book.title !== selectedBook.title && book.description !== selectedBook.description;
     });
     localStorage.setItem("initialArr", JSON.stringify(newArr));
     closeAllPopups();
     setListBook(newArr);
+    document.querySelector(".navigation__input-search").value="";
   }
 
   function handleBookClick(linkImage, title, description, _id) {
@@ -93,7 +95,6 @@ function App() {
 
   function onSubmitAddNewBook(evt, dataNewBook) {
     evt.preventDefault();
-    console.log(dataNewBook);
     let newArr = initialDataBooks();
     newArr.push(dataNewBook)
     localStorage.setItem("initialArr", JSON.stringify(newArr));
@@ -114,10 +115,20 @@ function App() {
     });
   }
 
+  const filteredSearchBooks = listBook.filter((book) => {
+    return book.title.toLowerCase().includes(valueInputSearch.toLowerCase());
+  })
+
+  useEffect(() => {
+    valueInputSearch.length === 0 ? setListBook(initialDataBooks()) : setListBook(filteredSearchBooks);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [valueInputSearch]);
+
   return (
     <>
       <Header 
         openFormAddBook={() => setIsAddNewBook(true)}
+        setValueInputSearch={setValueInputSearch}
       />  
       <Main 
         onBookClick={handleBookClick}
