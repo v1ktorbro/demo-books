@@ -61,6 +61,15 @@
   margin-top: 1px;
 }
 
+.btns-edit-change__label-file-name {
+  display: block;
+  margin-bottom: 10px;
+  text-align: start;
+  border-radius: 3px;
+  padding-left: 15px;
+  background-color: #d6e7f9;
+}
+
 .btns-edit-change__textarea {
   height: 55px;
   font-size: 20px;

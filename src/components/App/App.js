@@ -4,10 +4,9 @@ import Header from '../Header/Header';
 import Main from '../Main/Main';
 import PopupOpenBook from '../PopupOpenBook/PopupOpenBook';
 import PopupAddBook from '../PopupAddBook/PopupAddBook';
-import initialDataBooks from '../../utils/initialDataBooks';
 
 function App() {
-  const [listBook, setListBook] = useState(initialDataBooks);
+  const [listBook, setListBook] = useState(initialDataBooks());
   const [isAddNewBook, setIsAddNewBook] = useState(false);
   const [selectedBook, setSelectedBook] = useState({
     isOpen: false,
@@ -17,12 +16,21 @@ function App() {
     description: '',
   });
 
+  function initialDataBooks() {
+    if(localStorage.getItem("initialArr") == null) {
+      localStorage.setItem("initialArr", "[]");
+    }
+    let initialData = JSON.parse(localStorage.getItem("initialArr"));
+    return initialData;
+  }
+
   function removeCardBook(_id) {
-    const arr = listBook.filter((book, bookId) => {
+    const newArr = listBook.filter((book, bookId) => {
       return bookId !== selectedBook._id
-    })
+    });
+    localStorage.setItem("initialArr", JSON.stringify(newArr));
     closeAllPopups();
-    setListBook(arr);
+    setListBook(newArr);
   }
 
   function handleBookClick(linkImage, title, description, _id) {
@@ -44,6 +52,7 @@ function App() {
       }
       return book;
     })
+    localStorage.setItem("initialArr", JSON.stringify(updNewTitleInArr));
     setListBook(updNewTitleInArr);
   }
 
@@ -56,33 +65,41 @@ function App() {
       }
       return book;
     })
+    localStorage.setItem("initialArr", JSON.stringify(updNewDescriptionInArr));
     setListBook(updNewDescriptionInArr);
   }
 
   function onSubmitUpdImageBook(evt, newLinkImage) {
     evt.preventDefault();
-    const updNewDescriptionInArr = listBook.map((book, bookId) => {
+    console.log(listBook);
+    const updArr = listBook.map((book, bookId) => {
       if(bookId === selectedBook._id) {
         book.linkImage = newLinkImage;
         setSelectedBook({...selectedBook, linkImage: newLinkImage});
       }
       return book;
     })
-    setListBook(updNewDescriptionInArr);
+    localStorage.setItem("initialArr", JSON.stringify(updArr));
+    setListBook(updArr);
   }
   
   function clearFormAddBook() {
     const form = document.forms.addBook;
+    const imageInput = form.querySelector(".popup-add-book__input-file-wrapper").querySelector(".popup-add-book__input-file");
     form.title.value = "";
     form.description.value = "";
-    form.linkImage.value = "";
+    imageInput.value = "";
   }
 
   function onSubmitAddNewBook(evt, dataNewBook) {
     evt.preventDefault();
-    setListBook([...listBook, dataNewBook].reverse());
-    closeAllPopups();
+    console.log(dataNewBook);
+    let newArr = initialDataBooks();
+    newArr.push(dataNewBook)
+    localStorage.setItem("initialArr", JSON.stringify(newArr));
+    setListBook(newArr);
     clearFormAddBook();
+    closeAllPopups();
   }
 
   function closeAllPopups() {

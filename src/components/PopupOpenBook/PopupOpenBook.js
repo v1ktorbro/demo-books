@@ -11,7 +11,7 @@ function PopupOpenBook({ isOpen, onClose, linkImage, title, description,
   const [isRemoveBook, setIsRemoveBook] = useState(false);
   const [mouseOnImage, setMouseOnImage] = useState(false);
   const [mouseOnBtnEditTitle, setMouseOnBtnEditTitle] = useState(false);
-  const [mouseOnBtnEditDescr, setMouseOnBtnEditDescr] = useState(true);
+  const [mouseOnBtnEditDescr, setMouseOnBtnEditDescr] = useState(false);
 
   useEffect(() => {
     setIsTitleEdit(false);
@@ -32,11 +32,12 @@ function PopupOpenBook({ isOpen, onClose, linkImage, title, description,
             onClick={() => setIsImageEdit(true)} 
             src={linkImage}
             onMouseEnter={() => setMouseOnImage(true)} 
-            onMouseLeave={() => setMouseOnImage(false)} 
+            onMouseLeave={() => setMouseOnImage(false)}
           />
           {mouseOnImage && !isImageEdit && <span className="popup-open-book__label popup-open-book__label_image">Редактировать обложку</span>}
           { isImageEdit &&
               <BtnsEditChange
+                ifFileLoadForm
                 onCancel={() => setIsImageEdit(false)}
                 onSubmit={onSubmitUpdImageBook}
                 labelHide={() => setMouseOnImage(false)}
@@ -44,6 +45,9 @@ function PopupOpenBook({ isOpen, onClose, linkImage, title, description,
                   position: 'absolute',
                   top: '39%',
                   zIndex: '10',
+                  left: "14px",
+                  width: "calc(100% - 50px)",
+                  border: "1px solid #4D76A1"
                 }}
                 styleArea={{
                   height: "18px",

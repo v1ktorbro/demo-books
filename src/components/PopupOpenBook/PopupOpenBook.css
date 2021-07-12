@@ -80,8 +80,9 @@
   position: absolute;
   padding: 10px 15px;
   z-index: 10;
-  background-color: #fff;
+  background-color: #ffd0d0;
   border-radius: 5px;
+  border: 1px solid #4D76A1;
 }
 
 .popup-open-book__label_image {
@@ -90,14 +91,12 @@
 }
 
 .popup-open-book__label_title {
-  border: 1px solid #4D76A1;
   top: 42px;
   padding: 5px 10px;
   right: 35px;
 }
 
 .popup-open-book__label_description {
-  border: 1px solid #4D76A1;
   top: 37px;
   padding: 5px 10px;
   right: 35px;

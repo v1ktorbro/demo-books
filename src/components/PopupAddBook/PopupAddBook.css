@@ -21,7 +21,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: 400px;
-  height: 480px;
+  height: 415px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -105,11 +105,61 @@
 }
 
 .popup-add-book__label-file-name {
-  border: 1px solid #4D76A1;
   display: block;
   margin: 10px auto auto;
   text-align: start;
   border-radius: 3px;
   padding-left: 15px;
   background-color: #d6e7f9;
+}
+
+.popup-add-book__input-file-wrapper {
+  width: 100%;
+  position: relative;
+  margin: 0;
+  text-align: center;
+}
+
+.popup-add-book__input-file {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+}
+
+.popup-add-book__input-file-button {
+  width: 100%;
+  width: 100%;
+  height: 40px;
+  background: #d6e7f9;
+  color: black;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.popup-add-book__input-file-button:hover {
+  opacity: .9;
+}
+
+.popup-add-book__input-file-icon-wrapper {
+  height: 60px;
+  width: 60px;
+  margin-right: 15px;
+  display: flex;
+  justify-content: center;
+  border-right: 1px solid #fff;
+}
+
+.popup-add-book__input-file-icon {
+
+}
+
+.popup-add-book__input-file-button-text {
+  line-height: 1;
+  margin-top: 1px;
 }
