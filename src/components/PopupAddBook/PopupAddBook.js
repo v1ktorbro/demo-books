@@ -34,7 +34,10 @@ function PopupAddBook({ isOpen, onClose, onSubmit }) {
       onSubmit(evt, dataNewBook);
       clearInput();
       }}>
-      <span className="popup-add-book__btn-close" onClick={onClose} />
+      <span className="popup-add-book__btn-close" onClick={() => {
+        onClose();
+        clearInput();
+      }} />
         <h3 className="popup-add-book__title">Добавить книгу</h3>
         <input name="title" onChange={(evt) => setDataNewBook({...dataNewBook, title: evt.target.value})} className="popup-add-book__input popup-add-book__input-title" type="text" placeholder="Введите название книги" required />
         <textarea name="description" onChange={(evt) => setDataNewBook({...dataNewBook, description: evt.target.value})} className="popup-add-book__input popup-add-book__input-description" type="text" placeholder="Введите описание книги" required />
