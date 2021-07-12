@@ -6,6 +6,7 @@ import Main from '../Main/Main';
 import PopupOpenBook from '../PopupOpenBook/PopupOpenBook';
 import PopupAddBook from '../PopupAddBook/PopupAddBook';
 import NotFound from '../NotFound/NotFound';
+import Footer from '../Footer/Footer';
 
 function App() {
   const [listBook, setListBook] = useState(initialDataBooks());
@@ -172,6 +173,7 @@ function App() {
             />
           </>
       }
+      <Footer />
     </>  
   );
 }
