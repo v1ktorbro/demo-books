@@ -4,14 +4,15 @@
   max-width: 225px;
   background-color: white;
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .card-book__image {
   width: 100%;
   height: 205px;
-  object-fit: fill;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
+  object-fit: cover;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .card-book__text-block {

@@ -1,14 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import './App.css';
 import { useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import PopupOpenBook from '../PopupOpenBook/PopupOpenBook';
 import PopupAddBook from '../PopupAddBook/PopupAddBook';
+import NotFound from '../NotFound/NotFound';
 
 function App() {
   const [listBook, setListBook] = useState(initialDataBooks());
   const [isAddNewBook, setIsAddNewBook] = useState(false);
   const [valueInputSearch, setValueInputSearch] = useState('');
+  const [isNotFoundSearch, setIsNotFoundSearch] = useState(false);
   const [selectedBook, setSelectedBook] = useState({
     isOpen: false,
     id: '',
@@ -33,6 +36,7 @@ function App() {
     closeAllPopups();
     setListBook(newArr);
     document.querySelector(".navigation__input-search").value="";
+    setValueInputSearch('')
   }
 
   function handleBookClick(linkImage, title, description, _id) {
@@ -116,13 +120,23 @@ function App() {
   }
 
   const filteredSearchBooks = listBook.filter((book) => {
+      /* if(book.title.toLowerCase().includes(valueInputSearch.toLowerCase())) {
+        setIsNotFoundSearch(false);
+      } else {
+        setIsNotFoundSearch(true);
+      }
+      return book; */
     return book.title.toLowerCase().includes(valueInputSearch.toLowerCase());
   })
 
   useEffect(() => {
     valueInputSearch.length === 0 ? setListBook(initialDataBooks()) : setListBook(filteredSearchBooks);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [valueInputSearch]);
+
+  useEffect(() => {
+    filteredSearchBooks.length > 0 ? setIsNotFoundSearch(false) : setIsNotFoundSearch(true);
+    listBook.length === 0 && setListBook(initialDataBooks())
+  })
 
   return (
     <>
@@ -130,26 +144,34 @@ function App() {
         openFormAddBook={() => setIsAddNewBook(true)}
         setValueInputSearch={setValueInputSearch}
       />  
-      <Main 
-        onBookClick={handleBookClick}
-        listBook={listBook}
-      />
-      <PopupAddBook 
-        isOpen={isAddNewBook}
-        onClose={closeAllPopups}
-        onSubmit={onSubmitAddNewBook}
-      />
-      <PopupOpenBook 
-        isOpen={selectedBook.isOpen} 
-        linkImage={selectedBook.linkImage}
-        title={selectedBook.title}
-        description={selectedBook.description}
-        onClose={closeAllPopups}
-        onSubmitUpdTitleBook={onSubmitUpdTitleBook}
-        onSubmitUpdDescriptionBook={onSubmitUpdDescriptionBook}
-        onSubmitUpdImageBook={onSubmitUpdImageBook}
-        removeBook={removeCardBook}
-      />
+      { isNotFoundSearch ?
+          <NotFound  
+            textRequest={valueInputSearch}
+          />
+        :
+          <>
+            <Main 
+            onBookClick={handleBookClick}
+            listBook={listBook}
+            />
+            <PopupAddBook 
+              isOpen={isAddNewBook}
+              onClose={closeAllPopups}
+              onSubmit={onSubmitAddNewBook}
+            />
+            <PopupOpenBook 
+              isOpen={selectedBook.isOpen} 
+              linkImage={selectedBook.linkImage}
+              title={selectedBook.title}
+              description={selectedBook.description}
+              onClose={closeAllPopups}
+              onSubmitUpdTitleBook={onSubmitUpdTitleBook}
+              onSubmitUpdDescriptionBook={onSubmitUpdDescriptionBook}
+              onSubmitUpdImageBook={onSubmitUpdImageBook}
+              removeBook={removeCardBook}
+            />
+          </>
+      }
     </>  
   );
 }
