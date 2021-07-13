@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import PopupOpenBook from '../PopupOpenBook/PopupOpenBook';
@@ -11,7 +10,6 @@ import Footer from '../Footer/Footer';
 function App() {
   const [listBook, setListBook] = useState(initialDataBooks());
   const [isAddNewBook, setIsAddNewBook] = useState(false);
-  const [valueInputSearch, setValueInputSearch] = useState('');
   const [isNotFoundSearch, setIsNotFoundSearch] = useState(false);
   const [selectedBook, setSelectedBook] = useState({
     isOpen: false,
@@ -37,7 +35,6 @@ function App() {
     closeAllPopups();
     setListBook(newArr);
     document.querySelector(".navigation__input-search").value="";
-    setValueInputSearch('')
   }
 
   function handleBookClick(linkImage, title, description, _id) {
@@ -78,7 +75,6 @@ function App() {
 
   function onSubmitUpdImageBook(evt, newLinkImage) {
     evt.preventDefault();
-    console.log(listBook);
     const updArr = listBook.map((book, bookId) => {
       if(bookId === selectedBook._id) {
         book.linkImage = newLinkImage;
@@ -120,35 +116,29 @@ function App() {
     });
   }
 
-  const filteredSearchBooks = listBook.filter((book) => {
-      /* if(book.title.toLowerCase().includes(valueInputSearch.toLowerCase())) {
-        setIsNotFoundSearch(false);
-      } else {
-        setIsNotFoundSearch(true);
-      }
-      return book; */
-    return book.title.toLowerCase().includes(valueInputSearch.toLowerCase());
+  const filteredSearchBooks = (inputValue) => listBook.filter((book) => {
+    return book.title.toLowerCase().includes(inputValue.toLowerCase());
   })
 
-  useEffect(() => {
-    valueInputSearch.length === 0 ? setListBook(initialDataBooks()) : setListBook(filteredSearchBooks);
-  }, [valueInputSearch]);
-
-  useEffect(() => {
-    filteredSearchBooks.length > 0 ? setIsNotFoundSearch(false) : setIsNotFoundSearch(true);
-    listBook.length === 0 && setListBook(initialDataBooks())
-  })
+  function resultSearch(inputValue) {
+    console.log(inputValue);
+    if(inputValue.length > 0 ) {
+      filteredSearchBooks(inputValue).length === 0 ? setIsNotFoundSearch(true) : setIsNotFoundSearch(false);
+      setListBook(filteredSearchBooks(inputValue));
+    } else {
+      setListBook(initialDataBooks());
+      setIsNotFoundSearch(false)
+    }
+  }
 
   return (
     <>
       <Header 
         openFormAddBook={() => setIsAddNewBook(true)}
-        setValueInputSearch={setValueInputSearch}
+        resultSearch={resultSearch}
       />  
       { isNotFoundSearch ?
-          <NotFound  
-            textRequest={valueInputSearch}
-          />
+          <NotFound />
         :
           <>
             <Main 
